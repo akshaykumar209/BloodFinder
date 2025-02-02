@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blood Donor Finder</title>
+  <style>
+    /* Your existing CSS remains unchanged */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url("https://i.ibb.co/6mv56nn/Copy-of-Copy-of-pattern.jpg") no-repeat center / cover;
+      height: 100vh;
+
+    }
+    .error-message {
+      color: red;
+      font-size: 12px;
+    }
+
+    #pinError {
+      color: red;
+      font-size: 12px;
+    }
+
+    .container {
+      text-align: center;
+      padding: 20px;
+
+    }
+
+    .hidden {
+      display: none;
+    }
+
+
+    .red-btn {
+      background-color: red;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 25px;
+      font-size: 18px;
+      color: white;
+      cursor: pointer;
+      margin: 10px;
+      box-shadow:0px 2px 2px #161414;
+    }
+.red-btn:active {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); 
+  transform: translatey(-20px);
+}
+    .green-btn {
+      background-color: green;
+      padding: 15px 35px;
+      border: none;
+      border-radius: 25px;
+      font-size: 18px;
+      color: white;
+      cursor: pointer;
+      margin: 10px;
+      box-shadow:0px 2px 4px #161414;
+    
+    }
+.green-btn:active {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); 
+  transform: translatey(-20px);
+}
+    .form-container {
+      background-color: lightgrey;
+      padding: 20px;
+      border-radius: 10px;
+      display: inline-block;
+      margin-top: 20px;
+      width: 85%;
+      max-width: 600px;
+      height: auto;
+      margin:0 auto;
+    }
+
+    .form-container label {
+      display: block;
+      margin: 10px 0 5px;
+      font-size: 16px;
+    }
+
+    .form-container input,
+    .form-container select {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .donor-card {
+      border: 1px solid gray;
+      background-color: white;
+      color: black;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 5px;
+      text-align: left;
+    }
+
+    .back-btn {
+      display: block;
+      margin: 20px auto;
+      background-color: black;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      width: 150px;
+      border-radius: 5px;
+      text-decoration: none;
+      border: 1px solid black;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #header {
+      background: red;
+      border: 2px solid red;
+      padding: 10px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    #header button {
+      font-size: 9px;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      background: red;
+      border: 1px solid red;
+    }
+
+
+    #resultPage {
+      background-color: rgba(255, 255, 255, 0.8);
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    #resultPage h3,
+    #resultPage h4 {
+      background-color: white;
+      padding: 10px;
+      border-radius: 5px;
+      margin: 10px 0;
+    }
+
+    #registerPage,
+    #needBloodPage {
+      background: url("https://i.ibb.co/6mv56nn/Copy-of-Copy-of-pattern.jpg") no-repeat center center / cover fixed;
+    }
+
+    #aboutPage {
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <div id="header">
+      <button onclick="showPage('homePage')">Home</button>
+      <button onclick="showPage('needBloodPage')">I Need Blood</button>
+      <button onclick="showPage('registerPage')">Register as Donor</a>
+        <button onclick="showPage('aboutPage')">About Me</button>
+    </div>
+
+    <div id="homePage" class="container">
+      <h1>Blood Donor Finder</h1>
+      <button class="red-btn" onclick="showPage('needBloodPage')">I Need Blood</button>
+      <h3>OR</h3>
+      <button class="red-btn" onclick="showPage('registerPage')">Register as Donor</button>
+    </div>
+
+    <div id="registerPage" class="container hidden">
+      <h2>Register as a Blood Donor</h2>
+      <div class="form-container">
+        <!-- Registration form remains unchanged -->
+        <label for="regDistrict">Select District</label>
+        <select id="regDistrict">
+          <option value="">--Select District--</option>
+
+          <option>Agra</option>
+          <option>Aligarh</option>
+          <option>Amethi</option>
+          <option>Amroha</option>
+          <option>Auraiya</option>
+          <option>Azamgarh</option>
+          <option>Baghpat</option>
+          <option>Bahraich</option>
+          <option>Ballia</option>
+          <option>Banda</option>
+          <option>Barabanki</option>
+          <option>Bareilly</option>
+          <option>Basti</option>
+          <option>Bijnor</option>
+          <option>Budaun</option>
+          <option>Bulandshahr</option>
+          <option>Chandauli</option>
+          <option>Chitrakoot</option>
+          <option>Deoria</option>
+          <option>Etah</option>
+          <option>EtawahFatehpur</option>
+          <option>Faizabad</option>
+          <option>Farrukhabad</option>
+          <option>Fatehpur</option>
+          <option>Firozabad</option>
+          <option>Gautam Buddha
+            Nagar</option>
+          <option>Ghaziabad</option>
+          <option>Ganda </option>
+          <option>Gorakhpur</option>
+          <option>Hamirpur</option>
+          <option>Hapur</option>
+          <option>Hardoi</option>
+          <option>Hathras</option>
+          <option>Jalaun</option>
+          <option>Jaunpur</option>
+          <option>Jhansi</option>
+          <option>Amethi</option>
+          <option>Kannauj</option>
+          <option>Kasganj</option>
+          <option>Kanpur Dehat</option>
+          <option>Kanpur Nagar</option>
+          <option>Kushinagar</option>
+          <option>Kushi Nagar</option>
+          <option>Lucknow </option>
+          <option>Lalitpur</option>
+          <option>Maharajganj</option>
+          <option>Mahoba</option>
+          <option>Mainpuri</option>
+          <option>Mathura</option>
+          <option>Mau</option>
+          <option>Meerut</option>
+          <option>Mirzapur</option>
+          <option>Moradabad</option>
+          <option>Muzaffarnagar</option>
+          <option>Pilibhit</option>
+          <option>Pratapgarh</option>
+          <option>Raebareli</option>
+          <option>Rampur</option>
+          <option>Saharanpur</option>
+          <option>Sambhal</option>
+          <option>Cont Kobir</option>
+          <option>Sant Kabir Nagar</option>
+          <option>Shamli</option>
+          <option>Shahjahanpur</option>
+          <option>Shravasti</option>
+          <option>Siddharthnagar</option>
+          <option>Sitapur</option>
+          <option>Sonbhadra</option>
+          <option>Sultanpur</option>
+          <option>Unnao</option>
+          <option>Varanasi</option>
+          <option>Yamuna Nagar</option>
+          <option>Bharatpur</option>
+          <option>Bhilwara</option>
+          <option>Churu</option>
+          <!-- Add more districts here -->
+        </select>
+
+        <label for="regBloodGroup">Select Blood Group</label>
+        <select id="regBloodGroup">
+          <option value="">--Select Blood Group--</option>
+          <option>A+</option>
+          <option>A-</option>
+          <option>B+</option>
+          <option>B-</option>
+          <option>O+</option>
+          <option>O-</option>
+          <option>AB+</option>
+          <option>AB-</option>
+          <!-- Add more blood groups -->
+        </select>
+
+        <label for="regName">Name</label>
+        <input type="text" id="regName" placeholder="Enter your name">
+
+        <label for="regPhone">Phone Number</label>
+        <input type="number" id="regPhone" placeholder="Enter your number" oninput="validatePhone()">
+        <div id="phoneError" class="error-message hidden">Please enter a valid 10-digit phone number.</div>
+
+        <label for="regWhatsapp">WhatsApp Number</label>
+        <input type="number" id="regWhatsapp" placeholder="Enter WhatsApp number" oninput="validateWhatsapp()">
+        <div id="whatsappError" class="error-message hidden">Please enter a valid 10-digit WhatsApp number.</div>
+
+
+        <label for="regPin">Pin Code</label>
+        <input type="number" id="regPin" placeholder="Enter pin code" maxlength="6" oninput="validatePin()" required>
+
+        <span id="pinError" class="error hidden">PIN code must be 6 digits long.</span>
+
+        <button class="green-btn" onclick="registerDonor()">Register</button>
+      </div>
+    </div>
+
+    <div id="needBloodPage" class="container hidden">
+      <h2>Find Blood Donors</h2>
+      <div class="form-container">
+        <!-- Search form remains unchanged -->
+        <label for="searchDistrict">Select District</label>
+        <select id="searchDistrict">
+          <option value="">--Select District--</option>
+          <option>Agra</option>
+          <option>Aligarh</option>
+          <option>Amethi</option>
+          <option>Amroha</option>
+          <option>Auraiya</option>
+          <option>Azamgarh</option>
+          <option>Baghpat</option>
+          <option>Bahraich</option>
+          <option>Ballia</option>
+          <option>Banda</option>
+          <option>Barabanki</option>
+          <option>Bareilly</option>
+          <option>Basti</option>
+          <option>Bijnor</option>
+          <option>Budaun</option>
+          <option>Bulandshahr</option>
+          <option>Chandauli</option>
+          <option>Chitrakoot</option>
+          <option>Deoria</option>
+          <option>Etah</option>
+          <option>EtawahFatehpur</option>
+          <option>Faizabad</option>
+          <option>Farrukhabad</option>
+          <option>Fatehpur</option>
+          <option>Firozabad</option>
+          <option>Gautam Buddha
+            Nagar</option>
+          <option>Ghaziabad</option>
+          <option>Ganda </option>
+          <option>Gorakhpur</option>
+          <option>Hamirpur</option>
+          <option>Hapur</option>
+          <option>Hardoi</option>
+          <option>Hathras</option>
+          <option>Jalaun</option>
+          <option>Jaunpur</option>
+          <option>Jhansi</option>
+          <option>Amethi</option>
+          <option>Kannauj</option>
+          <option>Kasganj</option>
+          <option>Kanpur Dehat</option>
+          <option>Kanpur Nagar</option>
+          <option>Kushinagar</option>
+          <option>Kushi Nagar</option>
+          <option>Lucknow </option>
+          <option>Lalitpur</option>
+          <option>Maharajganj</option>
+          <option>Mahoba</option>
+          <option>Mainpuri</option>
+          <option>Mathura</option>
+          <option>Mau</option>
+          <option>Meerut</option>
+          <option>Mirzapur</option>
+          <option>Moradabad</option>
+          <option>Muzaffarnagar</option>
+          <option>Pilibhit</option>
+          <option>Pratapgarh</option>
+          <option>Raebareli</option>
+          <option>Rampur</option>
+          <option>Saharanpur</option>
+          <option>Sambhal</option>
+          <option>Cont Kobir</option>
+          <option>Sant Kabir Nagar</option>
+          <option>Shamli</option>
+          <option>Shahjahanpur</option>
+          <option>Shravasti</option>
+          <option>Siddharthnagar</option>
+          <option>Sitapur</option>
+          <option>Sonbhadra</option>
+          <option>Sultanpur</option>
+          <option>Unnao</option>
+          <option>Varanasi</option>
+          <option>Yamuna Nagar</option>
+          <option>Bharatpur</option>
+          <option>Bhilwara</option>
+          <option>Churu</option>
+          <!-- Add more districts here -->
+        </select>
+
+        <label for="searchBloodGroup">Select Blood Group</label>
+        <select id="searchBloodGroup">
+          <option value="">--Select Blood Group--</option>
+          <option>A+</option>
+          <option>A-</option>
+          <option>B+</option>
+          <option>B-</option>
+          <option>O+</option>
+          <option>O-</option>
+          <option>AB+</option>
+          <option>AB-</option>
+          <!-- Add more blood groups -->
+        </select>
+
+        <label for="searchPin">Pin Code</label>
+        <input type="number" id="searchPin" placeholder="Enter pin code" oninput="validateNeedPin()">
+        <div id="needPinError" class="hidden" style="color: red;">Please enter a valid 6-digit PIN code.</div>
+
+        <button class="green-btn" onclick="findDonors()">Find Donors</button>
+      </div>
+    </div>
+
+    <div id="resultPage" class="container hidden">
+      <h3>Results</h3>
+      <div id="result"></div>
+      <button class="back-btn" onclick="showPage('homePage')">Back to Home</button>
+    </div>
+
+    <div id="aboutPage" class="container hidden">
+      <h2>About Me</h2>
+      <p>
+        For any queries or support, contact us at:
+        <br>
+        <b>Email:</b> support@blooddonation.com
+        <br>
+        <b>Phone:</b> +91-9876543210
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const donors = [
+      { name: "Himanshu", district: "Agra", bloodGroup: "A+", phone: "9876543210", whatsapp: "9876543210", pin: "282001" },
+      { name: "Aditya", district: "Amethi", bloodGroup: "B+", phone: "8765432109", whatsapp: "8765432109", pin: "226001" },
+      { name: "Revaj", district: "Aligarh", bloodGroup: "A-", phone: "9876543210", whatsapp: "9876543210", pin: "282001" },
+      { name: "Akshit", district: "Amroha", bloodGroup: "B-", phone: "8765432109", whatsapp: "8765432109", pin: "226001" },
+      { name: "Vansh", district: "Auraiya", bloodGroup: "O+", phone: "9876543210", whatsapp: "9876543210", pin: "282001" },
+      { name: "Himanshu", district: "Azamgarh", bloodGroup: "O-", phone: "8765432109", whatsapp: "8765432109", pin: "226001" },
+      { name: "pavan", district: "Baghpat", bloodGroup: "AB+", phone: "9876543210", whatsapp: "9876543210", pin: "282001" },
+      { name: "Tillu", district: "Bahraich", bloodGroup: "AB-", phone: "8765432109", whatsapp: "8765432109", pin: "226001" },
+    ];
+
+    function showPage(pageId) {
+      document.querySelectorAll('.container').forEach(page => page.classList.add('hidden'));
+      document.getElementById(pageId).classList.remove('hidden');
+    }
+    // Function to validate phone number
+    function validatePhone() {
+      const phone = document.getElementById('regPhone').value;
+      const phoneError = document.getElementById('phoneError');
+      if (phone !== "" && phone.length !== 10) {
+        phoneError.classList.remove('hidden');
+      } else {
+        phoneError.classList.add('hidden');
+      }
+    }
+    // Function to validate WhatsApp number
+    function validateWhatsapp() {
+      const whatsapp = document.getElementById('regWhatsapp').value;
+      const whatsappError = document.getElementById('whatsappError');
+      if (whatsapp !== "" && whatsapp.length !== 10) {
+        whatsappError.classList.remove('hidden');
+      } else {
+        whatsappError.classList.add('hidden');
+      }
+    }
+
+    // Function to validate PIN code (6 digits)
+    function validatePin() {
+      const pin = document.getElementById('regPin').value;
+      const pinError = document.getElementById('pinError');
+      if (pin !== "" && pin.length !== 6 || isNaN(pin)) {
+        pinError.classList.remove('hidden')
+      } else {
+        pinError.classList.add('hidden');
+
+      }
+    }
+
+    function validateNeedPin() {
+      const searchPin = document.getElementById('searchPin').value;
+      const needPinError = document.getElementById('needPinError');
+      const needBloodPinHeading = document.getElementById('needBloodPinHeading');
+
+      if (searchPin !== "" && searchPin.length !== 6 || isNaN(searchPin)) {
+        needPinError.classList.remove('hidden');
+        needBloodPinHeading.classList.remove('hidden');
+      } else {
+        needPinError.classList.add('hidden');
+        needBloodPinHeading.classList.add('hidden');
+      }
+    }
+
+    function registerDonor() {
+      const name = document.getElementById('regName').value;
+      const district = document.getElementById('regDistrict').value;
+      const bloodGroup = document.getElementById('regBloodGroup').value;
+      const phone = document.getElementById('regPhone').value;
+      const whatsapp = document.getElementById('regWhatsapp').value;
+      const pin = document.getElementById('regPin').value;
+
+
+      if (!name || !district || !bloodGroup || !phone || !whatsapp || !pin) {
+        alert("Please fill all the fields!");
+        return;
+      }
+      if (pin.length !== 6) {
+        alert('Please enter a valid 6-digit PIN code.');
+        return;
+      }
+
+
+      if (phone.length !== 10 || whatsapp.length !== 10) {
+        alert('Please enter valid 10-digit phone and WhatsApp numbers.');
+        return;
+      }
+      if (phone.length !== 10 || whatsapp.length !== 10) {
+        alert('Please enter valid 10-digit phone and WhatsApp numbers.');
+        return;
+      }
+
+      donors.push({ name, district, bloodGroup, phone, whatsapp, pin });
+      alert("Donor registered successfully!");
+      showPage('homePage');
+    }
+
+    function findDonors() {
+      const district = document.getElementById('searchDistrict').value;
+      const bloodGroup = document.getElementById('searchBloodGroup').value;
+      const searchPin = document.getElementById('searchPin').value;
+
+      if (!district || !bloodGroup || !searchPin) {
+        alert("Please fill all the fields!");
+        return;
+      }
+
+      if (searchPin.length !== 6) {
+        alert('Please enter a valid 6-digit PIN code.');
+        return;
+      }
+
+
+      const matchingDonors = donors.filter(donor => donor.bloodGroup === bloodGroup);
+      const sameDistrictDonors = matchingDonors.filter(donor => donor.district === district);
+
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = "";
+
+      if (sameDistrictDonors.length > 0) {
+        sameDistrictDonors.forEach(donor => {
+          resultDiv.innerHTML += `
+            <div class="donor-card">
+              <p><b>Name:</b> ${donor.name}</p>
+              <p><b>District:</b> ${donor.district}</p>
+              <p><b>Blood Group:</b> ${donor.bloodGroup}</p>
+              <p><b>Phone:</b> ${donor.phone}</p>
+              <p><b>WhatsApp:</b> ${donor.whatsapp}</p>
+            </div>`;
+        });
+      } else {
+        resultDiv.innerHTML = `
+          <h3>No donors found in your district.</h3>
+          <h4>Here are donors from other districts:</h4>`;
+        matchingDonors.forEach(donor => {
+          resultDiv.innerHTML += `
+            <div class="donor-card">
+              <p><b>Name:</b> ${donor.name}</p>
+              <p><b>District:</b> ${donor.district}</p>
+              <p><b>Blood Group:</b> ${donor.bloodGroup}</p>
+              <p><b>Phone:</b> ${donor.phone}</p>
+              <p><b>WhatsApp:</b> ${donor.whatsapp}</p>
+            </div>`;
+        });
+      }
+      showPage('resultPage');
+    }
+  </script>
+</body>
+
+</html>
