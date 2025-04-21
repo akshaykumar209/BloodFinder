@@ -191,7 +191,97 @@
       transform: translateX(-50%);
       width: 350px;
     }
- 
+    .about-container {
+  background: #fff;
+  color: #222;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', sans-serif;
+  max-width: 900px;
+  margin: auto;
+}
+
+.about-container h2 {
+  text-align: center;
+  font-size: 40px;
+  color: #0066ff;
+  margin-bottom: 40px;
+  text-shadow: 1px 1px 2px rgba(0, 102, 255, 0.3);
+}
+
+.info-block {
+  background: linear-gradient(145deg, #f4f9ff, #ffffff);
+  padding: 25px 30px;
+  margin-bottom: 30px;
+  border-left: 6px solid #0066ff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 102, 255, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.info-block:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 102, 255, 0.15);
+}
+
+.info-block h3 {
+  color: #0066cc;
+  font-size: 22px;
+  margin-bottom: 12px;
+  border-bottom: 1px dashed #0099ff;
+  padding-bottom: 6px;
+}
+
+.info-block p {
+  font-size: 17px;
+  margin: 6px 0;
+  line-height: 1.6;
+}
+
+.info-block strong {
+  color: #004080;
+  
+}
+
+/* ---------- Responsive Styles ---------- */
+@media (max-width: 768px) {
+  .about-container {
+    padding: 30px 15px;
+  }
+
+  .about-container h2 {
+    font-size: 32px;
+  }
+
+  .info-block {
+    padding: 20px 20px;
+  }
+
+  .info-block h3 {
+    font-size: 20px;
+  }
+
+  .info-block p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-container h2 {
+    font-size: 26px;
+  }
+
+  .info-block h3 {
+    font-size: 18px;
+  }
+
+  .info-block p {
+    font-size: 15px;
+  }
+
+  .info-block {
+    padding: 18px 15px;
+  }
+    }
   </style>
 </head>
 
@@ -452,15 +542,45 @@
     </div>
 
     <div id="aboutPage" class="container hidden">
-     
-      <h2>About Me</h2>
-      <p>
-        For any queries or support, contact us at:
-        <br>
-        <b>Email:</b> support@blooddonation.com
-        <br>
-        <b>Phone:</b> +91-9876543210
-      </p>
+      <div class="about-container">
+  <h2>About Me</h2>
+
+  <article class="info-block">
+    <h3>1. Personal Details</h3>
+    <p><strong>Name:</strong> Akshay Kumar</p>
+    <p><strong>Education:</strong> 11th Grade, S.D. Inter College (City: Muzaffarnagar)</p>
+    <p><strong>Family Information:</strong></p>
+    <p>• Mother's Name: Mrs. Sushma</p>
+    <p>• Father's Name: Mr. Dheeraj</p>
+    <p>• Siblings: I have two sisters</p>
+  </article>
+
+  <article class="info-block">
+    <h3>2. My Coding Journey</h3>
+    <p><strong>Who Introduced Me to Coding?</strong><br/> My school</p>
+    <p><strong>When Did I Start Learning Coding?</strong> During my web development studies</p>
+    <p><strong>What Did I Learn First?</strong><br/> HTML, CSS, and JavaScript</p>
+  </article>
+
+  <article class="info-block">
+    <h3>3. Experience with CodeYogi</h3>
+    <p><strong>When Did I Join CodeYogi?</strong> <br/>2 August 2024</p>
+    <p><strong>What Have I Learned?</strong><br/> HTML, CSS, and JavaScript</p>
+  </article>
+
+  <article class="info-block">
+    <h3>4. Additional Achievements</h3>
+    <p><strong>Competitions Participated:</strong> Wordle</p>
+    <p><strong>Awards or Positions Earned:</strong> None</p>
+  </article>
+
+  <article class="info-block">
+    <h3>5. Future Plans</h3>
+    <p><strong>Career Goal:</strong> To become a Software Developer</p>
+    <p><strong>Reason:</strong> I'm passionate about creating innovative solutions and contributing to the tech world.</p>
+  </article>
+  </div>
+      
      
     </div>
   </div>
